@@ -1,0 +1,47 @@
+<p>prueba works!</p>
+
+
+<h1>LISTA DE CLIENTES</h1>
+<table>
+    <tr>
+        <th>Codigo</th>
+        <th>Dni</th>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Acciones</th>
+        <th>Deudas</th>
+    </tr>
+    <tr *ngFor="let cli of clientes | async">
+        <td>{{cli.codigo}}</td>
+        <td>{{cli.dni}}</td>
+        <td>{{cli.nombre}}</td>
+        <td>{{cli.direccion}}</td>
+        <td>
+            <button (click)="mostrarFormularioActualizar(cli)">Actualizar</button>
+            <button (click)="borrarCliente(cli.codigo)">Borrar</button>
+        </td>
+    </tr>
+
+
+    <tr *ngIf="client.deudas && client.deudas.length > 0">
+        <td colspan="5">
+          <h3>Deudas del Cliente</h3>
+          <table>
+            <tr>
+              <th>Código Deuda</th>
+              <th>Mes</th>
+              <th>Valor</th>
+            </tr>
+            <tr *ngFor="let deuda of client.deudas">
+              <td>{{ deuda.codigo }}</td>
+              <td>{{ deuda.mes }}</td>
+              <td>{{ deuda.valor }}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr *ngIf="!client.deudas || client.deudas.length === 0">
+        <td colspan="5">No hay deudas</td>
+      </tr>
+
+</table>
